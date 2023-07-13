@@ -12,7 +12,7 @@ class SlackAttachment extends LaravelSlackAttachment
      *
      * @var array
      */
-    public $blocks;
+    public array $blocks;
 
     /**
      * Add a block to the attachment.
@@ -20,9 +20,9 @@ class SlackAttachment extends LaravelSlackAttachment
      * @param  \Closure  $callback
      * @return $this
      */
-    public function block(Closure $callback)
+    public function block(Closure $callback): static
     {
-        $this->blocks[] = $block = new SlackBlock;
+        $this->blocks[] = $block = new SlackBlock();
 
         $callback($block);
 
@@ -34,9 +34,9 @@ class SlackAttachment extends LaravelSlackAttachment
      *
      * @return $this
      */
-    public function dividerBlock()
+    public function dividerBlock(): static
     {
-        $this->blocks[] = new SlackAttachmentBlockDivider;
+        $this->blocks[] = new SlackAttachmentBlockDivider();
 
         return $this;
     }
@@ -49,7 +49,7 @@ class SlackAttachment extends LaravelSlackAttachment
      * @param string|null $title
      * @return $this
      */
-    public function imageBlock($imageUrl, $altText, $title = null)
+    public function imageBlock(string $imageUrl, string $altText, string $title = null): static
     {
         $this->blocks[] = new SlackAttachmentBlockImage($imageUrl, $altText, $title);
 

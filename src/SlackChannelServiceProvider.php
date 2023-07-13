@@ -13,10 +13,10 @@ class SlackChannelServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         Notification::extend('slack', function ($app) {
-            return new Channels\SlackWebhookChannel(new HttpClient);
+            return new Channels\SlackWebhookChannel(new HttpClient());
         });
     }
 }

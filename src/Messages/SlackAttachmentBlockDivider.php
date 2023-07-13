@@ -11,7 +11,7 @@ class SlackAttachmentBlockDivider implements SlackBlockContract
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'type' => 'divider',

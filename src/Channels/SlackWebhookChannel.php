@@ -27,7 +27,7 @@ class SlackWebhookChannel extends LaravelSlackWebhookChannel
      * @param  \Illuminate\Notifications\Messages\SlackMessage  $message
      * @return array
      */
-    protected function buildJsonPayload(SlackMessage $message)
+    protected function buildJsonPayload(SlackMessage $message): array
     {
         $optionalFields = array_filter([
             'channel' => data_get($message, 'channel'),
@@ -56,7 +56,7 @@ class SlackWebhookChannel extends LaravelSlackWebhookChannel
      * @param  \Illuminate\Notifications\Messages\SlackMessage  $message
      * @return array
      */
-    protected function attachments(SlackMessage $message)
+    protected function attachments(SlackMessage $message): array
     {
         return collect($message->attachments)->map(function ($attachment) use ($message) {
             return array_filter([
@@ -88,7 +88,7 @@ class SlackWebhookChannel extends LaravelSlackWebhookChannel
      * @param  SlackMessage|SlackAttachment  $message
      * @return array
      */
-    protected function blocks($message)
+    protected function blocks(SlackMessage|SlackAttachment $message): array
     {
         if (!property_exists($message, 'blocks')) {
             return [];

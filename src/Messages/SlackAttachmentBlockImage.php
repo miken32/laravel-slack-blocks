@@ -32,7 +32,7 @@ class SlackAttachmentBlockImage implements SlackBlockContract
      *
      * @param string $imageUrl
      * @param string $altText
-     * @param string|null
+     * @param string|null $title
      */
     public function __construct($imageUrl, $altText, $title)
     {
@@ -46,7 +46,7 @@ class SlackAttachmentBlockImage implements SlackBlockContract
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         $titleData = $this->title ? [
             'type' => 'plain_text',

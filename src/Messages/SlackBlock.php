@@ -11,78 +11,78 @@ class SlackBlock implements SlackBlockContract
      *
      * @var string
      */
-    public $type;
+    public string $type;
 
     /**
      * The text field of the block.
      *
      * @var array
      */
-    public $text;
+    public array $text;
 
     /**
      * The block ID field of the block.
      *
      * @var string
      */
-    public $id;
+    public string $id;
 
     /**
      * The fields field of the block.
      *
      * @var array
      */
-    public $fields;
+    public array $fields;
 
     /**
      * The accessory field of the block.
      *
      * @var array
      */
-    public $accessory;
+    public array $accessory;
 
     /**
      * The url field of the block.
      *
      * @var string
      */
-    public $url;
+    public string $url;
 
     /**
      * The image url field of the block.
      *
      * @var string
      */
-    public $imageUrl;
+    public string $imageUrl;
 
     /**
      * The alt text field of the block.
      *
      * @var string
      */
-    public $altText;
+    public string $altText;
 
     /**
      * The title field of the block.
      *
      * @var array
      */
-    public $title;
+    public array $title;
 
     /**
      * The elements field of the block.
      *
      * @var array
      */
-    public $elements;
+    public array $elements;
 
     /**
      * Set the type of the block.
      *
-     * @param  string  $type
+     * @param string $type
      * @return $this
      */
-    public function type($type)
+    public function type(string $type): static
     {
         $this->type = $type;
 
@@ -92,10 +92,10 @@ class SlackBlock implements SlackBlockContract
     /**
      * Set the text of the block.
      *
-     * @param  array  $text
+     * @param array $text
      * @return $this
      */
-    public function text($text)
+    public function text(array $text): static
     {
         $this->text = $text;
 
@@ -105,10 +105,10 @@ class SlackBlock implements SlackBlockContract
     /**
      * Set the ID of the block.
      *
-     * @param  string  $id
+     * @param string $id
      * @return $this
      */
-    public function id($id)
+    public function id(string $id): static
     {
         $this->id = $id;
 
@@ -118,10 +118,10 @@ class SlackBlock implements SlackBlockContract
     /**
      * Set the fields of the block.
      *
-     * @param  array  $fields
+     * @param array $fields
      * @return $this
      */
-    public function fields($fields)
+    public function fields(array $fields): static
     {
         $this->fields = $fields;
 
@@ -131,10 +131,10 @@ class SlackBlock implements SlackBlockContract
     /**
      * Set the accessory of the block.
      *
-     * @param  array  $accessory
+     * @param array $accessory
      * @return $this
      */
-    public function accessory($accessory)
+    public function accessory(array $accessory): static
     {
         $this->accessory = $accessory;
 
@@ -144,10 +144,10 @@ class SlackBlock implements SlackBlockContract
     /**
      * Set the url of the block.
      *
-     * @param  string  $url
+     * @param string $url
      * @return $this
      */
-    public function url($url)
+    public function url(string $url): static
     {
         $this->url = $url;
 
@@ -157,10 +157,10 @@ class SlackBlock implements SlackBlockContract
     /**
      * Set the image url of the block.
      *
-     * @param  string  $imageUrl
+     * @param string $imageUrl
      * @return $this
      */
-    public function imageUrl($imageUrl)
+    public function imageUrl(string $imageUrl): static
     {
         $this->imageUrl = $imageUrl;
 
@@ -170,10 +170,10 @@ class SlackBlock implements SlackBlockContract
     /**
      * Set the alt text of the block.
      *
-     * @param  string  $altText
+     * @param string $altText
      * @return $this
      */
-    public function altText($altText)
+    public function altText(string $altText): static
     {
         $this->altText = $altText;
 
@@ -183,10 +183,10 @@ class SlackBlock implements SlackBlockContract
     /**
      * Set the title of the block.
      *
-     * @param  array  $title
+     * @param array $title
      * @return $this
      */
-    public function title($title)
+    public function title(array $title): static
     {
         $this->title = $title;
 
@@ -196,10 +196,10 @@ class SlackBlock implements SlackBlockContract
     /**
      * Set the elements of the block.
      *
-     * @param  array  $elements
+     * @param array $elements
      * @return $this
      */
-    public function elements($elements)
+    public function elements(array $elements): static
     {
         $this->elements = $elements;
 
@@ -211,7 +211,7 @@ class SlackBlock implements SlackBlockContract
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return array_filter([
             'type' => $this->type,

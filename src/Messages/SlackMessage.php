@@ -13,7 +13,7 @@ class SlackMessage extends LaravelSlackMessage
      *
      * @var array
      */
-    public $blocks;
+    public array $blocks;
 
     /**
      * Define an attachment for the message.
@@ -21,9 +21,9 @@ class SlackMessage extends LaravelSlackMessage
      * @param  \Closure  $callback
      * @return $this
      */
-    public function attachment(Closure $callback)
+    public function attachment(Closure $callback): static
     {
-        $this->attachments[] = $attachment = new SlackAttachment;
+        $this->attachments[] = $attachment = new SlackAttachment();
 
         $callback($attachment);
 
@@ -36,9 +36,9 @@ class SlackMessage extends LaravelSlackMessage
      * @param  \Closure  $callback
      * @return $this
      */
-    public function block(Closure $callback)
+    public function block(Closure $callback): static
     {
-        $this->blocks[] = $block = new SlackBlock;
+        $this->blocks[] = $block = new SlackBlock();
 
         $callback($block);
 
