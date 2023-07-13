@@ -6,39 +6,16 @@ use NathanHeffley\LaravelSlackBlocks\Contracts\SlackBlockContract;
 
 class SlackAttachmentBlockImage implements SlackBlockContract
 {
-    /**
-     * The image's URL.
-     *
-     * @var string
-     */
-    protected $imageUrl;
-
-    /**
-     * The image's alt text.
-     *
-     * @var string
-     */
-    protected $altText;
-
-    /**
-     * The image's title.
-     *
-     * @var string|null
-     */
-    protected $title;
 
     /**
      * Create a new block image.
      *
-     * @param string $imageUrl
-     * @param string $altText
-     * @param string|null $title
+     * @param string $imageUrl The image's URL.
+     * @param string $altText The image's alt text.
+     * @param string|null $title The image's title.
      */
-    public function __construct($imageUrl, $altText, $title)
+    public function __construct(protected string $imageUrl, protected string $altText, protected ?string $title = null)
     {
-        $this->imageUrl = $imageUrl;
-        $this->altText = $altText;
-        $this->title = $title;
     }
 
     /**
