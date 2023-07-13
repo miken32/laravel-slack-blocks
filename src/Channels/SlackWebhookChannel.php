@@ -13,7 +13,7 @@ class SlackWebhookChannel extends LaravelSlackWebhookChannel
     /**
      * Create a new Slack channel instance.
      *
-     * @param  \GuzzleHttp\Client  $http
+     * @param  HttpClient  $http
      * @return void
      */
     public function __construct(HttpClient $http)
@@ -24,7 +24,7 @@ class SlackWebhookChannel extends LaravelSlackWebhookChannel
     /**
      * Build up a JSON payload for the Slack webhook.
      *
-     * @param  \Illuminate\Notifications\Messages\SlackMessage  $message
+     * @param  SlackMessage  $message
      * @return array
      */
     protected function buildJsonPayload(SlackMessage $message): array
@@ -39,21 +39,19 @@ class SlackWebhookChannel extends LaravelSlackWebhookChannel
             'username' => data_get($message, 'username'),
         ]);
 
-        $result = array_merge([
+        return array_merge([
             'json' => array_merge([
                 'text' => $message->content,
                 'blocks' => $this->blocks($message),
                 'attachments' => $this->attachments($message),
             ], $optionalFields),
         ], $message->http);
-
-        return $result;
     }
 
     /**
      * Format the message's attachments.
      *
-     * @param  \Illuminate\Notifications\Messages\SlackMessage  $message
+     * @param  SlackMessage  $message
      * @return array
      */
     protected function attachments(SlackMessage $message): array
@@ -64,10 +62,11 @@ class SlackWebhookChannel extends LaravelSlackWebhookChannel
                 'author_icon' => $attachment->authorIcon,
                 'author_link' => $attachment->authorLink,
                 'author_name' => $attachment->authorName,
+                'blocks' => $this->blocks($attachment),
+                'callback_id' => $attachment->callbackId,
                 'color' => $attachment->color ?: $message->color(),
                 'fallback' => $attachment->fallback,
                 'fields' => $this->fields($attachment),
-                'blocks' => $this->blocks($attachment),
                 'footer' => $attachment->footer,
                 'footer_icon' => $attachment->footerIcon,
                 'image_url' => $attachment->imageUrl,
