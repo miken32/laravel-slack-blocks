@@ -2,10 +2,13 @@
 
 namespace NathanHeffley\LaravelSlackBlocks\Objects;
 
+use NathanHeffley\LaravelSlackBlocks\Concerns\LimitsFieldLength;
 use ValueError;
 
 class ConfirmationDialog extends ObjectBase implements \NathanHeffley\LaravelSlackBlocks\Contracts\SlackObjectContract
 {
+    use LimitsFieldLength;
+
     /** @var PlainText Object that defines the dialog's title */
     protected PlainText $title;
 
@@ -33,22 +36,16 @@ class ConfirmationDialog extends ObjectBase implements \NathanHeffley\LaravelSla
      */
     public function __construct(string $title, string $text, string $confirm, string $deny, bool $danger = false)
     {
-        if (strlen($title) > 100) {
-            throw new ValueError('Dialog title must be <= 100 characters');
-        }
-        if (strlen($text) > 300) {
-            throw new ValueError('Dialog text must be <= 300 characters');
-        }
-        if (strlen($confirm) > 30) {
-            throw new ValueError('Confirm text must be <= 30 characters');
-        }
-        if (strlen($deny) > 30) {
-            throw new ValueError('Deny text must be <= 30 characters');
-        }
         $this->title = new PlainText($title);
         $this->text = new PlainText($text);
         $this->confirm = new PlainText($confirm);
         $this->deny = new PlainText($deny);
         $this->style = $danger ? 'danger' : 'primary';
+        $this->validateFieldLengths([
+            'title' => 100,
+            'text' => 300,
+            'confirm' => 30,
+            'deny' => 30,
+        ]);
     }
 }

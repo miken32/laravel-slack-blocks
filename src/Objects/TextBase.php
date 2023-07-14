@@ -20,4 +20,14 @@ abstract class TextBase extends ObjectBase implements SlackObjectContract
     public function __construct(protected string $text, protected bool $emoji = false, protected bool $verbatim = false)
     {
     }
+
+    public function trim(int $length): void
+    {
+        $this->text = substr($this->text, 0, $length);
+    }
+
+    public function __toString(): string
+    {
+        return $this->text;
+    }
 }
