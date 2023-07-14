@@ -4,10 +4,10 @@ namespace NathanHeffley\LaravelSlackBlocks\Concerns;
 
 use Illuminate\Support\Str;
 use NathanHeffley\LaravelSlackBlocks\Contracts\SlackBlockContract;
+use NathanHeffley\LaravelSlackBlocks\Contracts\SlackElementContract;
 use NathanHeffley\LaravelSlackBlocks\Contracts\SlackObjectContract;
 use ReflectionClass;
 use ReflectionProperty;
-use ValueError;
 
 trait ExposesFieldsAsArray
 {
@@ -29,7 +29,11 @@ trait ExposesFieldsAsArray
             $name = $property->getName();
             $snake_name = Str::snake($name);
             $value = $this->{$name};
-            if ($value instanceof SlackBlockContract || $value instanceof SlackObjectContract) {
+            if (
+                $value instanceof SlackBlockContract
+                || $value instanceof SlackObjectContract
+                || $value instanceof SlackElementContract
+            ) {
                 $value = $value->toArray();
             }
             $fields[$snake_name] = $value;

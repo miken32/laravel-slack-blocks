@@ -12,6 +12,6 @@ abstract class ElementBase implements SlackBlockContract
     /** @var string The type field value */
     protected string $type;
 
-    /** @var string The action_id field value */
+    /** @var string An identifier for the action triggered when a menu option is selected. You can use this when you receive an interaction payload to identify the source of the action. */
     protected string $actionId;
 }
