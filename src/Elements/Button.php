@@ -22,8 +22,8 @@ class Button extends InteractiveElementBase implements SlackElementContract
     /** @var string|null The value to send along with the interaction payload */
     protected ?string $value = null;
 
-    /** @var string Decorates buttons with alternative visual color schemes. Use this option with restraint */
-    protected string $style = 'default';
+    /** @var string|null Decorates buttons with alternative visual color schemes. Use this option with restraint */
+    protected ?string $style = null;
 
     /** @var string|null A label for longer descriptive text about a button element */
     protected ?string $accessibilityLabel = null;
@@ -63,8 +63,8 @@ class Button extends InteractiveElementBase implements SlackElementContract
 
     public function style(string $style): static
     {
-        if (!in_array($style, ['default', 'primary', 'danger'])) {
-            throw new ValueError('The style must be one of "default", "primary", or "danger"');
+        if ($style !== 'primary' && $style !== 'danger') {
+            throw new ValueError('The style must be one of "primary" or "danger"');
         }
         $this->style = $style;
 
