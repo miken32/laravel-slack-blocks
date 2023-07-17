@@ -39,6 +39,6 @@ trait ExposesFieldsAsArray
             $fields[$snake_name] = $value;
         }
 
-        return array_filter($fields, fn ($v) => !is_null($v));
+        return array_filter($fields, fn ($v) => !is_null($v) && $v !== []);
     }
 }
