@@ -4,6 +4,7 @@ namespace NathanHeffley\LaravelSlackBlocks\Objects;
 
 use NathanHeffley\LaravelSlackBlocks\Concerns\LimitsFieldLength;
 use NathanHeffley\LaravelSlackBlocks\Contracts\SlackObjectContract;
+use ValueError;
 
 class ConfirmationDialog extends ObjectBase implements SlackObjectContract
 {
@@ -21,8 +22,8 @@ class ConfirmationDialog extends ObjectBase implements SlackObjectContract
     /** @var PlainText Object to define the text of the button that cancels the action */
     protected PlainText $deny;
 
-    /** @var string Defines the color scheme applied to the confirm button. A value of danger will display the button with a red background on desktop, or red text on mobile. */
-    protected string $style;
+    /** @var string|null Defines the color scheme applied to the confirm button. A value of danger will display the button with a red background on desktop, or red text on mobile. */
+    protected ?string $style = null;
 
     /**
      * Construct a new Confirmation dialog object
@@ -32,20 +33,28 @@ class ConfirmationDialog extends ObjectBase implements SlackObjectContract
      * @param string $text Explanatory text in the dialog
      * @param string $confirm Text of a button that confirms the action
      * @param string $deny Text of a button that cancels the action
-     * @param bool $danger If true, the confirm button will be rendered for attention (e.g. red colour)
      */
-    public function __construct(string $title, string $text, string $confirm, string $deny, bool $danger = false)
+    public function __construct(string $title, string $text, string $confirm, string $deny)
     {
         $this->title = new PlainText($title);
         $this->text = new PlainText($text);
         $this->confirm = new PlainText($confirm);
         $this->deny = new PlainText($deny);
-        $this->style = $danger ? 'danger' : 'primary';
         $this->validateFieldLengths([
             'title' => 100,
             'text' => 300,
             'confirm' => 30,
             'deny' => 30,
         ]);
+    }
+
+    public function style(string $style): static
+    {
+        if ($style !== 'primary' && $style !== 'danger') {
+            throw new ValueError('The style must be one of "primary" or "danger"');
+        }
+        $this->style = $style;
+
+        return $this;
     }
 }

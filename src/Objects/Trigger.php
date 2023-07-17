@@ -6,18 +6,26 @@ use NathanHeffley\LaravelSlackBlocks\Contracts\SlackObjectContract;
 
 class Trigger extends ObjectBase implements SlackObjectContract
 {
+    /** @var array<InputParameter>|null An array of input parameter objects. Each specified name must match an input parameter defined on the workflow of the provided trigger */
+    protected ?array $customizableInputParameters = null;
+
     /**
      * Construct a new Trigger object
      *
      * @see https://api.slack.com/reference/block-kit/composition-objects#trigger
      * @param string $url A link trigger URL
-     * @param array<InputParameter> $customizableInputParameters An array of input parameter objects. Each specified name must match an input parameter defined on the workflow of the provided trigger
      */
-    public function __construct(protected string $url, protected array $customizableInputParameters = [])
+    public function __construct(protected string $url)
+    {
+    }
+
+    public function customizableInputParameters(array $params): static
     {
         $this->customizableInputParameters = array_filter(
-            $this->customizableInputParameters,
+            $params,
             fn ($v) => $v instanceof InputParameter
         );
+
+        return $this;
     }
 }

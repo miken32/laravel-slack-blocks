@@ -8,15 +8,13 @@ class Markdown extends TextBase implements SlackObjectContract
 {
     protected string $type = 'mrkdwn';
 
-    /**
-     * Construct a new Text object with Markdown rendering
-     *
-     * @see https://api.slack.com/reference/block-kit/composition-objects#text
-     * @param string $text The text content
-     * @param bool $verbatim If true, prevent auto-linking of URLs, channels, etc
-     */
-    public function __construct(string $text, bool $verbatim = false)
+    /** @var bool If true, prevent auto-linking of URLs, channels, etc */
+    protected bool $verbatim = false;
+
+    public function verbatim(bool $verbatim = true): static
     {
-        parent::__construct($text, verbatim: $verbatim);
+        $this->verbatim = $verbatim;
+
+        return $this;
     }
 }
