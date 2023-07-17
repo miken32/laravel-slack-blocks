@@ -4,7 +4,6 @@ namespace NathanHeffley\LaravelSlackBlocks\Messages;
 
 use Closure;
 use Illuminate\Notifications\Messages\SlackMessage as LaravelSlackMessage;
-use NathanHeffley\LaravelSlackBlocks\Messages\SlackBlock;
 
 class SlackMessage extends LaravelSlackMessage
 {
@@ -13,7 +12,7 @@ class SlackMessage extends LaravelSlackMessage
      *
      * @var array
      */
-    public array $blocks;
+    public array $blocks = [];
 
     /**
      * Define an attachment for the message.

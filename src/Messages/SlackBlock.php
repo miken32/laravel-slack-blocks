@@ -11,70 +11,70 @@ class SlackBlock implements SlackBlockContract
      *
      * @var string
      */
-    public string $type;
+    public string $type = '';
 
     /**
      * The text field of the block.
      *
      * @var array
      */
-    public array $text;
+    public array $text = [];
 
     /**
      * The block ID field of the block.
      *
      * @var string
      */
-    public string $id;
+    public string $id = '';
 
     /**
      * The fields field of the block.
      *
      * @var array
      */
-    public array $fields;
+    public array $fields = [];
 
     /**
      * The accessory field of the block.
      *
      * @var array
      */
-    public array $accessory;
+    public array $accessory = [];
 
     /**
      * The url field of the block.
      *
      * @var string
      */
-    public string $url;
+    public string $url = '';
 
     /**
      * The image url field of the block.
      *
      * @var string
      */
-    public string $imageUrl;
+    public string $imageUrl = '';
 
     /**
      * The alt text field of the block.
      *
      * @var string
      */
-    public string $altText;
+    public string $altText = '';
 
     /**
      * The title field of the block.
      *
      * @var array
      */
-    public array $title;
+    public array $title = [];
 
     /**
      * The elements field of the block.
      *
      * @var array
      */
-    public array $elements;
+    public array $elements = [];
 
     /**
      * Set the type of the block.
