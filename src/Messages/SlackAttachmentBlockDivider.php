@@ -4,6 +4,10 @@ namespace NathanHeffley\LaravelSlackBlocks\Messages;
 
 use NathanHeffley\LaravelSlackBlocks\Contracts\SlackBlockContract;
 
+/**
+ * @deprecated since version 3.0, no longer in use
+ * @see \NathanHeffley\LaravelSlackBlocks\Blocks\Divider
+ */
 class SlackAttachmentBlockDivider implements SlackBlockContract
 {
     /**
