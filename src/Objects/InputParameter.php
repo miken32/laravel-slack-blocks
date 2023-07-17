@@ -2,7 +2,9 @@
 
 namespace NathanHeffley\LaravelSlackBlocks\Objects;
 
-class InputParameter extends ObjectBase implements \NathanHeffley\LaravelSlackBlocks\Contracts\SlackObjectContract
+use NathanHeffley\LaravelSlackBlocks\Contracts\SlackObjectContract;
+
+class InputParameter extends ObjectBase implements SlackObjectContract
 {
     /**
      * Construct a new Input Parameter object

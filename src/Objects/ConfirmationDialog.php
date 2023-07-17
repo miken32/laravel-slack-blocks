@@ -3,9 +3,9 @@
 namespace NathanHeffley\LaravelSlackBlocks\Objects;
 
 use NathanHeffley\LaravelSlackBlocks\Concerns\LimitsFieldLength;
-use ValueError;
+use NathanHeffley\LaravelSlackBlocks\Contracts\SlackObjectContract;
 
-class ConfirmationDialog extends ObjectBase implements \NathanHeffley\LaravelSlackBlocks\Contracts\SlackObjectContract
+class ConfirmationDialog extends ObjectBase implements SlackObjectContract
 {
     use LimitsFieldLength;
 
