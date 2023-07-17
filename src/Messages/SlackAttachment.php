@@ -4,6 +4,9 @@ namespace NathanHeffley\LaravelSlackBlocks\Messages;
 
 use Closure;
 use Illuminate\Notifications\Messages\SlackAttachment as LaravelSlackAttachment;
+use NathanHeffley\LaravelSlackBlocks\Blocks\Divider;
+use NathanHeffley\LaravelSlackBlocks\Blocks\Header;
+use NathanHeffley\LaravelSlackBlocks\Blocks\Image;
 
 class SlackAttachment extends LaravelSlackAttachment
 {
@@ -36,7 +39,7 @@ class SlackAttachment extends LaravelSlackAttachment
      */
     public function dividerBlock(): static
     {
-        $this->blocks[] = new SlackAttachmentBlockDivider();
+        $this->blocks[] = new Divider();
 
         return $this;
     }
@@ -51,7 +54,24 @@ class SlackAttachment extends LaravelSlackAttachment
      */
     public function imageBlock(string $imageUrl, string $altText, string $title = null): static
     {
-        $this->blocks[] = new SlackAttachmentBlockImage($imageUrl, $altText, $title);
+        $image = new Image($imageUrl, $altText);
+        if ($title) {
+            $image->title($title);
+        }
+        $this->blocks[] = $image;
+
+        return $this;
+    }
+
+    /**
+     * Add a header block to the attachment
+     *
+     * @param string $text
+     * @return $this
+     */
+    public function headerBlock(string $text): static
+    {
+        $this->blocks[] = new Header($text);
 
         return $this;
     }
